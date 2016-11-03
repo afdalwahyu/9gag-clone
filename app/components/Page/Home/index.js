@@ -3,11 +3,11 @@ import {
   View,
   ListView,
 } from 'react-native';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+
 
 import Container from './Container';
-import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view';
-
-import HomeNavBar from '../../NavBar/HomeNavBar';
+import DefaultTabBar from './TabBar/DefaultTabBar';
 
 class Content extends Component {
 
@@ -22,13 +22,16 @@ class Content extends Component {
   render() {
     return (
       <ScrollableTabView
-        style={{ marginTop: 20 }}
+        tabBarInactiveTextColor={'#54504C'}
+        tabBarActiveTextColor={'#fff'}
+        tabBarBackgroundColor={'#000'}
+        tabBarPosition={'top'}
         initialPage={0}
-        renderTabBar={() => <ScrollableTabBar />}
-        >
-        <ListView tabLabel='HOT' dataSource={this.state.dataSource} renderRow={() => <Container />} />
-        <ListView tabLabel='TRENDING' dataSource={this.state.dataSource} renderRow={() => <Container />} />
-        <ListView tabLabel='FRESH' dataSource={this.state.dataSource} renderRow={() => <Container />} />        
+        renderTabBar={() => <DefaultTabBar {...this.props} />}
+      >
+        <ListView tabLabel={'HOT'} dataSource={this.state.dataSource} renderRow={() => <Container />} />
+        <ListView tabLabel={'TRENDING'} dataSource={this.state.dataSource} renderRow={() => <Container />} />
+        <ListView tabLabel={'FRESH'} dataSource={this.state.dataSource} renderRow={() => <Container />} />
       </ScrollableTabView>
     );
   }

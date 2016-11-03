@@ -6,12 +6,13 @@ import {
 
 import Content from './components/Page/Home';
 import Footer from './components/Footer';
-import HomeNavBar from './components/NavBar/HomeNavBar'
+import HomeNavBar from './components/NavBar/HomeNavBar';
 
 class index extends Component {
   render() {
     return (
       <View style={styles.container} >
+        <HomeNavBar />
         <Content />
         <Footer />
       </View>
