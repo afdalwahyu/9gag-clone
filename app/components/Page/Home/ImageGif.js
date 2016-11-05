@@ -6,8 +6,6 @@ import {
   StyleSheet,
 } from 'react-native';
 
-const maxwidth = Dimensions.get('window').width;
-
 class ImageGif extends Component {
 
   constructor(props) {
@@ -15,24 +13,42 @@ class ImageGif extends Component {
     this.state = {
       width: null,
       height: null,
+      imageWidth: null,
+      imageHeight: null,
     };
   }
 
 
   componentDidMount() {
     Image.getSize(this.props.source, (width, height) => {
-      this.setState({ width, height });
+      this.setState({
+        imageWidth: width,
+        imageHeight: height,
+      });
     });
   }
 
   getCalculatedHeight() {
-    return (this.state.height / this.state.width) * maxwidth;
+    return (this.state.imageHeight / this.state.imageWidth) * this.state.width;
+  }
+
+  calculateWH(event) {
+    const { width } = event.nativeEvent.layout;
+    this.setState({
+      width,
+    });
   }
 
   render() {
     return (
-      <View style={{ flex: 1 }} >
-        <Image style={[styles.image, { height: this.getCalculatedHeight() }]} source={{ uri: this.props.source }} />
+      <View
+        style={{ flex: 1 }}
+        onLayout={event => this.calculateWH(event)}
+      >
+        <Image
+          style={[styles.image, { width: this.state.width, height: this.getCalculatedHeight() }]}
+          source={{ uri: this.props.source }}
+        />
       </View>
     );
   }
@@ -40,7 +56,6 @@ class ImageGif extends Component {
 
 const styles = StyleSheet.create({
   image: {
-    width: maxwidth,
   },
 });
 
