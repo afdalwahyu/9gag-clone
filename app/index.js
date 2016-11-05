@@ -4,16 +4,19 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Content from './components/Page/Home';
+// import page package
+import Home from './components/Page/Home';
+import Explore from './components/Page/Explore';
+
 import Footer from './components/Footer';
-import HomeNavBar from './components/NavBar/HomeNavBar';
+
 
 class index extends Component {
+
   render() {
     return (
       <View style={styles.container} >
-        <HomeNavBar />
-        <Content />
+        <Explore />
         <Footer />
       </View>
     );

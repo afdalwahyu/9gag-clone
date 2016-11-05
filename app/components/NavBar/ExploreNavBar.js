@@ -5,11 +5,11 @@ import {
   StyleSheet,
 } from 'react-native';
 
-class HomeNavBar extends Component {
+class ExploreNavBar extends Component {
   render() {
     return (
       <View style={styles.container} >
-        <Text style={styles.title} >9GAG</Text>
+        <Text style={styles.title} >Explore</Text>
       </View>
     );
   }
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeNavBar;
+export default ExploreNavBar;
